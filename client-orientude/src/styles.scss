@@ -2,15 +2,20 @@
 
 @import "~../node_modules/bootstrap/dist/css/bootstrap.min.css";
 @import "~font-awesome/css/font-awesome.css";
-
-
-
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@300&family=Poppins:wght@200&family=Roboto:wght@300&display=swap');
+*{
+    font-family: 'Roboto', sans-serif;
+}
 
 body{
 background-color: white;
-//background: rgb(70,130,180);
-//background: radial-gradient(circle, rgba(70,130,180,1) 18%, rgba(73,149,173,1) 64%, rgba(193,230,249,1) 100%);
+font-family: 'Roboto', sans-serif;
+font-family: 'Poppins', sans-serif;
+
 }
+
+
+
 
 
 
@@ -84,5 +89,5 @@ a{
 }*/
 /* Importing Bootstrap SCSS file. */
 
-html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+//html, body { height: 100%; }
+//body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }

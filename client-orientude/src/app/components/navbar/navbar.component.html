@@ -1,0 +1,41 @@
+<nav class="navbar navbar-expand-lg navbar-light head__custom-nav">
+          
+    <a class="navbar-brand" [routerLink]=" ">
+      <img src="../../assets/img/orientudeLogo.png">
+      <span>Orientude</span>
+    </a>
+
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" >
+      <span><img src="../../assets/img/toggler.png">
+      </span>
+      </button>
+
+      <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+          <li class="nav-item active">
+            <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">About</a>
+          </li>
+          <li class="nav-item active">
+            <a class="nav-link" href="#">Contact us</a>
+          </li>
+          <li class="shadow nav-item active">
+            <a class="btn  btn-lg"  [routerLinkActive]="['active']"
+             [routerLinkActiveOptions]="{exact:true}" routerLink='/register'>Sign in</a>
+          </li>
+        </ul>
+      </div>
+  </nav>
+
+  <div class="woostify-footer-text-widget">
+    <h2 class="woostify-footer-site-title">Asset Shore</h2>
+ <p>Buy and sell assets for your websites, 
+   games, graphics, videos infact for any projects, just browse
+    and you will find what you're looking for</p>
+  
+  
+
+  
+

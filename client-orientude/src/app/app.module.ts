@@ -6,11 +6,9 @@ import { HttpClientModule } from '@angular/common/http'
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BackButtonComponent } from './back-button/back-button.component';
-import { SmallXComponent } from './small-x/small-x.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { NavComponent } from './nav/nav.component';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -24,16 +22,20 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { SearchSchoolComponent } from './search-school/search-school.component';
 import { InterviewComponent } from './interview/interview.component';
+import { NavbarComponent } from './components/navbar/navbar.component';
+import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
+import { RegisterComponent } from './components/register/register.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     BackButtonComponent,
-    SmallXComponent,
     HomeComponent,
-    NavComponent,
     SearchSchoolComponent,
-    InterviewComponent
+    InterviewComponent,
+    NavbarComponent,
+    DashboardAdminComponent,
+    RegisterComponent
   ],
   imports: [
     HttpClientModule,

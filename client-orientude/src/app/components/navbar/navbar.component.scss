@@ -1,0 +1,30 @@
+.navbar{
+    background-color: #b8dde3;
+}
+
+#navbarNav {
+    .navbar-nav {
+        .nav-item{
+            .nav-link {
+                color: #000;
+                font-weight: 400;
+                padding: 8px 15px;
+                white-space: nowrap;
+                transition: .5s cubic-bezier(0.785, 0.135, 0.15, 0.86);
+                &:hover {
+                    color: lightcoral;
+                }
+            }
+        }
+    }
+}
+
+.btn {
+    color: #fff;
+    background-color: #2b4eff;
+    
+    &:hover {
+        background-color: lightcoral;
+        color: #ececec;
+    }
+}

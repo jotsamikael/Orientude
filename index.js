@@ -1,9 +1,12 @@
 const express = require('express')
-const app = express()
+const app = express();
+const router = express.Router();
 //mongoose
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const path = require('path');
+const authentication = require('./routes/authentication')(router)
+const bodyParser = require('body-parser')
 
 
 
@@ -20,7 +23,15 @@ mongoose.connect(config.uri, (err)=>{
 
 mongoose.connect();
 
+app.use(bodyParser.urlencoded({extended: false}))
+//parse application/json
+app.use(bodyParser.json());
+
+
 app.use(express.static(__dirname + '/client-orientude/project-frontend/dist/'));
+app.use('/authentication', authentication);
+
+
 
 //client-orientude\dist\project-frontend\index.html
 app.get('*',(req, res)=> {
