@@ -138,7 +138,7 @@ userSchema.pre('save', function(next) {
 
 
 //compare the encrpted password in db with the password the current user uses to login, return true if there's a match 
-userSchema.methods.comparePassword = (password) =>{
+userSchema.methods.comparePassword = function(password){
     return bcrypt.compareSync(password, this.password)
 }
 

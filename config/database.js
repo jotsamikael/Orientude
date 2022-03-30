@@ -1,7 +1,6 @@
-const crypto = require('crypto').randomBytes(256).toString('hex');
-
-  
-
+const crypto = require('crypto').randomBytes(64).toString('hex');
+//const crypto = Buffer.from("mysecret").toString('base64');
+     
 
 
 module.exports = {

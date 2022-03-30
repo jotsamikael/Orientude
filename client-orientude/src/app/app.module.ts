@@ -17,14 +17,16 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 
 
 import { SearchSchoolComponent } from './search-school/search-school.component';
 import { InterviewComponent } from './interview/interview.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
-import { DashboardAdminComponent } from './components/dashboard-admin/dashboard-admin.component';
 import { RegisterComponent } from './components/register/register.component';
+import { LoginComponent } from './components/login/login.component';
+import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { ProfileComponent } from './components/profile/profile.component'
 
 @NgModule({
   declarations: [
@@ -34,8 +36,10 @@ import { RegisterComponent } from './components/register/register.component';
     SearchSchoolComponent,
     InterviewComponent,
     NavbarComponent,
-    DashboardAdminComponent,
-    RegisterComponent
+    RegisterComponent,
+    LoginComponent,
+    ProfileComponent,
+    DashboardComponent
   ],
   imports: [
     HttpClientModule,
@@ -50,7 +54,6 @@ import { RegisterComponent } from './components/register/register.component';
     MatIconModule,
     MatFormFieldModule,
     MatSelectModule,
-    FormsModule,
     ReactiveFormsModule,
     MatListModule
   ],

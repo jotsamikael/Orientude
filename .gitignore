@@ -7,12 +7,13 @@
   
 # dependencies  
 /node_modules  
-  
+
 
 /client-orientude/node_modules
 
 /client-orientude/dist
 
+.env
 
 # IDEs and editors  
 /.idea  

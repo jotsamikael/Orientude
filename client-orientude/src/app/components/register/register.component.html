@@ -1,1 +1,110 @@
-<p>register works!</p>
+<div class="container pt-5">
+         <div class="row">
+             <div class="col-md-2"></div>
+
+             <div class="col-md-8">
+
+                <div class="show-hide-message">
+                    <div [ngClass]="messageClass">
+                               {{message}}
+                    </div>
+                </div>
+
+
+                <form [formGroup]="form" (submit)="onSubmitForm()">
+                
+                <div class="form-group">
+                
+                    <label for="NameDemo">Your Username:</label>
+                
+                    <input (blur)="checkUsernameIsUnique()" type="text" class="form-control" name="username" formControlName="username" aria-describedby="nameHelp" placeholder="Enter username">
+                
+                    <div *ngIf="f.username.touched && (f.username.invalid)" class="alert alert-danger mt-1">
+
+                        <div *ngIf="f.username.errors.required">Username is required.</div>
+
+
+                        <div *ngIf="f.username.errors.maxlength">Username should be less than 15 characters.</div>
+                        
+                        <div *ngIf="f.username.errors.minlength">Please, username should be atleast 3 characters.</div>
+            
+                    </div>
+                    <small *ngIf="usernameMessage">{{this.dataObtained.message}}</small>
+                    
+                </div>
+                
+                <div class="form-group">
+                    <label for="email">Your Email:</label>
+
+                    <input type="email" class="form-control" name="email" formControlName="email"  placeholder="Enter email">
+                
+                    <div *ngIf="f.email.touched && f.email.invalid" class="alert alert-danger mt-1">
+
+                        <div *ngIf="f.email.errors.required">Email is required.</div>
+            
+                        <div *ngIf="f.email.errors.email">Please, enter valid email address.</div>
+
+                        <div *ngIf="f.email.errors.maxlength">Email should be less than 30 characters.</div>
+
+            
+                    </div>      
+                </div>
+                
+                <div class="form-group">
+                
+                    <label for="passDemo">Enter Password:</label>
+                
+                    <input type="password" class="form-control" name="password" formControlName="password" aria-describedby="passHelp" placeholder="Password">
+                
+                    <div *ngIf="f.password.touched && f.password.invalid" class="alert alert-danger mt-1">
+
+                        <div *ngIf="f.password.errors.required">Password is required.</div>
+
+                        <div *ngIf="f.password.errors.minlength">Password should be atleast 6 characters</div>
+                       
+                        <div *ngIf="f.password.errors.maxlength">Username should be less than 15 characters.</div>
+
+                        <div *ngIf="f.password.errors.pattern">Password should be atleast 6 characters and should contain atleast one capital letter, on number and a special character  characters.</div>
+
+                        
+
+                    </div>                
+                </div>
+
+
+                <div class="form-group">
+                
+                    <label for="passDemoConfirm">Confirm Password:</label>
+                
+                    <input type="password" class="form-control" name="confirmPassword" formControlName="confirmPassword" aria-describedby="passHelp" placeholder="Confirm password">
+                
+                    <div *ngIf="f.confirmPassword.touched && f.confirmPassword.invalid" class="alert alert-danger mt-1">
+                        <div *ngIf="f.confirmPassword.errors.required">Password is required.</div>
+                    </div>  
+             
+                    <div *ngIf="form.controls.confirmPassword.value != form.controls.password.value" class="alert alert-danger mt-1" >Confirmation password is not the same as entered password.</div>
+                     
+                </div>
+                
+                <div class="form-check">
+                
+                    <input type="checkbox" class="form-check-input" (click)="checked()">
+                
+                    <label class="form-check-label" for="CheckDemo">Agree with Terms & Conditions?</label><br>
+                
+                    <small class="mt-3 ml-5"><a routerLink="/">Aready have an account</a></small>
+
+                </div>
+
+                
+                <button type="submit"  [disabled]="!form.valid || (check == false) || (processing)" class="btn btn-success mt-5">Create Account</button>
+                
+                </form>
+
+            </div>
+                <div class="col-md-2"></div>
+       </div>
+    </div>
+ 
+    
+<p>message : {{usernameMessage}}</p>
