@@ -8,7 +8,6 @@ import { AppComponent } from './app.component';
 import { BackButtonComponent } from './back-button/back-button.component';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { HomeComponent } from './home/home.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LayoutModule } from '@angular/cdk/layout';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
@@ -18,7 +17,8 @@ import { MatListModule } from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
 import { ReactiveFormsModule } from '@angular/forms';
-
+// Import the module from the SDK
+import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 import { SearchSchoolComponent } from './search-school/search-school.component';
 import { InterviewComponent } from './interview/interview.component';
@@ -27,6 +27,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component'
+
 
 @NgModule({
   declarations: [
@@ -46,7 +47,6 @@ import { ProfileComponent } from './components/profile/profile.component'
     BrowserModule,
     AppRoutingModule,
     NgbModule,
-    BrowserAnimationsModule,
     LayoutModule,
     MatToolbarModule,
     MatButtonModule,
@@ -55,9 +55,12 @@ import { ProfileComponent } from './components/profile/profile.component'
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
-    MatListModule
+    MatListModule,
+    
+    
   ],
-  providers: [],
+  providers: [ { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
+    JwtHelperService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

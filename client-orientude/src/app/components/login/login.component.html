@@ -19,17 +19,7 @@
            
                <input  type="text" class="form-control" name="username" formControlName="username" aria-describedby="nameHelp" placeholder="Enter username">
            
-               <div *ngIf="f.username.touched && (f.username.invalid)" class="alert alert-danger mt-1">
-
-                   <div *ngIf="f.username.errors.required">Username is required.</div>
-
-
-                 <!--   <div *ngIf="f.username.errors.maxlength">Username should be less than 15 characters.</div>
-                   
-                   <div *ngIf="f.username.errors.minlength">Please, username should be atleast 3 characters.</div>
-        -->
-               </div>
-               <small *ngIf="usernameMessage">{{this.dataObtained.message}}</small>
+           
                
            </div>
            

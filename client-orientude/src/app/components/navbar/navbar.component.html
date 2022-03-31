@@ -15,25 +15,32 @@
           <li class="nav-item active">
             <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Home</a>
           </li>
+          <li *ngIf="authService.loggedIn() == true" class="nav-item active" >
+            <a class="nav-link" href="#">Profile</a>
+          </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">About</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">Contact us</a>
           </li>
-          <li class="shadow nav-item active">
+          <li class="shadow nav-item active" *ngIf="authService.loggedIn() == false">
             <a class="btn  btn-lg"  [routerLinkActive]="['active']"
              [routerLinkActiveOptions]="{exact:true}" routerLink='/register'>Sign Up</a>
           </li>
           <li class="shadow nav-item active">
             <a class="btn  btn-lg ml-2"  [routerLinkActive]="['active']"
-             [routerLinkActiveOptions]="{exact:true}" routerLink='/login'>Sign In</a>
+             [routerLinkActiveOptions]="{exact:true}" routerLink='/login'><i class="fa fa-user-circle"></i></a>
+          </li>
+
+          <li class="shadow nav-item active" *ngIf="authService.loggedIn() == true">
+            <a class="btn  btn-lg ml-2" (click)="Onlogout()"><i class="fa fa-sign-out"></i></a>
           </li>
         </ul>
       </div>
   </nav>
 
-
+  
   
   
 

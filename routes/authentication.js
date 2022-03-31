@@ -221,7 +221,17 @@ router.get('/checkUsername/:username', (req, res)=>{
  })
 
  router.get('/profile', (req,res)=>{
-     res.send(req.decoded);
+    User.findOne({_id: req.decoded.userId}).select('username email').exec((err, user)=>{
+         if(err){
+             res.json({success: false, message: err})
+         } else{
+             if(!user){
+                 res.json({success: false, message: 'No user found'});
+             } else{
+                 res.json({sucess: true, user:user});
+             }
+         }
+    })
  })
 
 

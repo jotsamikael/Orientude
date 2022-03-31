@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-
+import { JwtHelperService } from '@auth0/angular-jwt';
 
 @Injectable({
   providedIn: 'root'
@@ -34,7 +34,9 @@ loadToken(){
   this.authotoken = localStorage.getItem('token');
 }
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, public jwtHelper: JwtHelperService) { }
+
+ 
 
   registerUser(user){
     return this.http.post(this.domain+ '/authentication/register', user)
@@ -52,6 +54,13 @@ loadToken(){
      return this.http.post(this.domain +'/authentication/login/', user)
    }
 
+   logout(){
+     this.authotoken = null;
+     this.user = null;
+     console.log('is token expired:' +this.jwtHelper.isTokenExpired());
+     localStorage.clear();
+   }
+
    storeUserData(user, token){
      localStorage.setItem('token', token);
      localStorage.setItem('user', JSON.stringify(user));
@@ -65,4 +74,23 @@ loadToken(){
      this.createAuthenticationHeader();
      return this.http.get(this.domain +'/authentication/profile/', this.options)
    }
+
+
+   loggedIn(){
+
+
+    this.authotoken = localStorage.getItem('token')
+    
+    if(this.authotoken){
+      return true;
+    }
+    else{
+      return false;
+    }
+ 
+
+    //console.log('is token expired:' +this.jwtHelper.isTokenExpired());
+    //return this.jwtHelper.isTokenExpired();
+    
+  }
 }

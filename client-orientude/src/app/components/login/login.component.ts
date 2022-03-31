@@ -95,7 +95,7 @@ export class LoginComponent implements OnInit {
                     this.authService.storeUserData(this.dataObtained.user, this.dataObtained.token);
 
                     setTimeout(() => {
-                       this.router.navigate(['/dashboard'])
+                       this.router.navigate(['/profile'])
                     }, 1500);
                   }
                 } )

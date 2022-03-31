@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { MessagesService } from '../messages.service';
 
 @Component({
   selector: 'app-home',
@@ -7,9 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomeComponent implements OnInit {
 
-  constructor() { }
+
+  messageClassType;
+  message;
+
+  constructor(public messageService: MessagesService) { }
 
   ngOnInit(): void {
+    this.messageService.classType
+    this.messageService.messageText 
+
+   
+    
+    console.log('info is' + this.messageService.messageText);
   }
+
+
 
 }
