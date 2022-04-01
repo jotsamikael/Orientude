@@ -21,7 +21,6 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
 import { SearchSchoolComponent } from './search-school/search-school.component';
-import { InterviewComponent } from './interview/interview.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
@@ -29,6 +28,7 @@ import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component'
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
+import { InterviewManagerComponent } from './components/interview-manager/interview-manager.component';
 
 
 @NgModule({
@@ -37,12 +37,12 @@ import { NotAuthGuard } from './guards/notAuth.guard';
     BackButtonComponent,
     HomeComponent,
     SearchSchoolComponent,
-    InterviewComponent,
     NavbarComponent,
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    DashboardComponent
+    DashboardComponent,
+    InterviewManagerComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,109 @@
+<h1 class="page-header">Interview Feeds</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+              
+
+            <button class="btn btn-warning mr-1" *ngIf="!newPost" (click)="addNewPost()">Add new </button>
+            <button class="btn btn-info ml-1" [disabled]="reloading" (click)="reloadPost()"><i class="fa fa-refresh" aria-hidden="true" ></i>
+            &nbsp;&nbsp;Reload</button>
+
+<br>
+<br>
+
+            <div *ngIf="!newPost">
+                  <div class="card shadow border-2 border-secondary">
+
+                    <div class="card-heading bg-secondary">
+                         <h3 class="card-title pl-3 pt-2 text-white">Interview Title</h3>
+                    </div>
+
+                    <div class="card-body">
+                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, iusto commodi, veritatis rerum quibusdam sit porro cum laudantium nostrum facere eveniet. Suscipit, tempore fugit. Rem explicabo voluptates ipsam ipsum non.
+                    </div>
+
+                                     <!-- FOOTER STARTS HERE -->
+
+                    <div class="card-footer">
+                        <p>
+                            <strong>Posted by: </strong>
+                        </p>
+
+                        <p>
+                            <strong>Date: </strong>
+                        </p>
+                        <div>
+                            <p><strong>Likes: </strong></p>
+                        </div>
+                        <a href="" class="btn btn-primary mr-1">Edit</a>
+                        
+                        <a href="" class="btn btn-danger mr-1">Delete</a>
+
+
+                             <!-- LIKES DROPDOWN -->
+                        <div class="dropdown">
+                            <button class="btn btn-success mr-1">
+                                <i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Likes:
+                            </button>
+                            <div class="dropdown-content">
+                                <a href="">joe</a>
+                                <a href="">john</a>
+                                <a href="">jones</a>
+                            </div>
+                        </div>
+
+
+                              <!-- DISLIKES DROPDOWN -->
+                              <div class="dropdown">
+                                <button class="btn btn-warning">
+                                    <i class="fa fa-arrow-down" aria-hidden="true"></i>&nbsp; Dislikes:
+                                </button>
+                                <div class="dropdown-content">
+                                    <a href="">doe</a>
+                                    <a href="">jin</a>
+                                    <a href="">jean</a>
+                                </div>
+                            </div>
+                       
+                    </div>
+                  
+
+                 <!-- FOOTER ENDS HERE -->
+                 <ul class="list-group">
+                     <li class="list-group-item">
+                         <button class="btn btn-sm btn-danger" (click)="draftComment()">
+                             post comment
+                         </button>
+                         <br>
+                         <form class="mt-2">
+
+                             <textarea name="" id="" cols="90" rows="4"></textarea> <br>
+                             <button class="btn btn-sm btn-info mr-1">save</button>
+                             <button class="btn btn-sm btn-danger">cancel</button>
+
+                         </form>
+                     </li>
+                 </ul>
+                </div>
+            </div>
+
+
+
+
+
+        </div>
+
+
+
+        <div class="col-2">
+
+        </div>
+    </div>
+</div>
+
+
+
