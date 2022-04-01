@@ -27,6 +27,8 @@ import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component'
+import { AuthGuard } from './guards/auth.guard';
+import { NotAuthGuard } from './guards/notAuth.guard';
 
 
 @NgModule({
@@ -60,7 +62,9 @@ import { ProfileComponent } from './components/profile/profile.component'
     
   ],
   providers: [ { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
-    JwtHelperService],
+    JwtHelperService,
+     AuthGuard,
+    NotAuthGuard ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

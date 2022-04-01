@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-light head__custom-nav">
           
-    <a class="navbar-brand" [routerLink]=" ">
+    <a class="navbar-brand" [routerLink]="['/']">
       <img src="../../assets/img/orientudeLogo.png">
       <span>Orientude</span>
     </a>
@@ -13,10 +13,10 @@
       <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
         <ul class="navbar-nav">
           <li class="nav-item active">
-            <a class="nav-link" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true}">Home</a>
+            <a class="nav-link"  [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true} ">Home</a>
           </li>
           <li *ngIf="authService.loggedIn() == true" class="nav-item active" >
-            <a class="nav-link" href="#">Profile</a>
+            <a class="nav-link" routerLink='/profile'>Profile</a>
           </li>
           <li class="nav-item active">
             <a class="nav-link" href="#">About</a>
@@ -30,7 +30,7 @@
           </li>
           <li class="shadow nav-item active">
             <a class="btn  btn-lg ml-2"  [routerLinkActive]="['active']"
-             [routerLinkActiveOptions]="{exact:true}" routerLink='/login'><i class="fa fa-user-circle"></i></a>
+             [routerLinkActiveOptions]="{exact:true}" routerLink='/login' *ngIf="authService.loggedIn() == false"><i class="fa fa-user-circle"></i></a>
           </li>
 
           <li class="shadow nav-item active" *ngIf="authService.loggedIn() == true">
