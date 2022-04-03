@@ -7,47 +7,111 @@
         </div>
         <div class="col-8">
               
+            <div class="show-hide-message">
+                <div [ngClass]="messageClass">
+                           {{message}}
+                </div>
+            </div>
+
 
             <button class="btn btn-warning mr-1" *ngIf="!newPost" (click)="addNewPost()">Add new </button>
-            <button class="btn btn-info ml-1" [disabled]="reloading" (click)="reloadPost()"><i class="fa fa-refresh" aria-hidden="true" ></i>
+            <button class="btn btn-info ml-1" *ngIf="!newPost" [disabled]="reloading" (click)="reloadPost()"><i class="fa fa-refresh" aria-hidden="true" ></i>
             &nbsp;&nbsp;Reload</button>
 
 <br>
 <br>
 
+
+                 <!-- New interview form-->
+                
+
+
+                <form [formGroup]="form" (submit)="onSubmitForm()" *ngIf="newPost">
+
+                                     <!-- Title input -->
+
+                    <div class="form-group">
+                        <label for="NameDemo">Title:</label>
+                
+                        <input  type="text" class="form-control" name="title" formControlName="title" aria-describedby="nameHelp" placeholder="Enter title">
+                       
+                        <div *ngIf="f.title.touched && (f.title.invalid)" class="alert alert-danger mt-1">
+
+                        <div *ngIf="f.title.errors.required">title is required.</div>
+
+
+                        <div *ngIf="f.title.errors.maxlength">title should be less than 60 characters.</div>
+                        
+                        <div *ngIf="f.title.errors.minlength">Please, title should be atleast 3 characters.</div>
+            
+                    </div>
+                     <small *ngIf="titleMessage">{{this.dataObtained.message}}</small> 
+                    </div>
+                    
+
+                                       <!-- Body input -->
+
+                    <div class="form-group">
+                        <label for="NameDemo">Body:</label>
+                
+                        <textarea cols="90" rows="4" class="form-control" name="body" formControlName="body" aria-describedby="nameHelp" placeholder="Enter body"></textarea>
+                       
+                     <div *ngIf="f.body.touched && (f.body.invalid)" class="alert alert-danger mt-1">
+
+                        <div *ngIf="f.body.errors.required">body is required.</div>
+
+
+                        <div *ngIf="f.body.errors.maxlength">body should be less than 1000 characters.</div>
+                        
+                        <div *ngIf="f.body.errors.minlength">Please, body should be atleast 20 characters.</div>
+            
+                    </div>
+                     <small *ngIf="bodyMessage">{{this.dataObtained.message}}</small> 
+                                          
+                    </div>
+            
+                   <button [disabled]="processing" (click)="goBack()" class="btn btn-secondary mr-1">Go back</button>
+                   <button [disabled]="!form.valid || (processing)"  class="btn btn-success">submit</button>
+
+                </form>
+
+
+                <!-- New interview form-->
+
             <div *ngIf="!newPost">
-                  <div class="card shadow border-2 border-secondary">
+                  <div class="card shadow border-2 border-secondary mt-5" *ngFor="let interview of this.interviews">
 
                     <div class="card-heading bg-secondary">
-                         <h3 class="card-title pl-3 pt-2 text-white">Interview Title</h3>
+                         <h3 class="card-title pl-3 pt-2 text-white">{{this.interview.title}}</h3>
                     </div>
 
                     <div class="card-body">
-                        Lorem ipsum dolor sit amet, consectetur adipisicing elit. Libero, iusto commodi, veritatis rerum quibusdam sit porro cum laudantium nostrum facere eveniet. Suscipit, tempore fugit. Rem explicabo voluptates ipsam ipsum non.
+                        {{this.interview.body}}
                     </div>
 
                                      <!-- FOOTER STARTS HERE -->
 
                     <div class="card-footer">
                         <p>
-                            <strong>Posted by: </strong>
+                            <strong>Posted by: {{this.interview.createdBy}} </strong>
                         </p>
 
                         <p>
-                            <strong>Date: </strong>
+                            <strong>Date:{{this.interview.createdAt | date: 'MMM dd, yyyy'}}  </strong>
+                          
                         </p>
-                        <div>
-                            <p><strong>Likes: </strong></p>
+                        <div *ngIf="this.userProfile.user.username === this.interview.createdBy">
+                            <p><strong>Likes:  {{this.interview.likes}} </strong></p>
                         </div>
-                        <a href="" class="btn btn-primary mr-1">Edit</a>
+                        <a routerLink= "['/edit-interview', interview._id]"  *ngIf="this.userProfile.user.username === this.interview.createdBy" class="btn btn-primary mr-1">Edit</a>
                         
-                        <a href="" class="btn btn-danger mr-1">Delete</a>
+                        <a routerLink= "['/delete-interview', interview._id]" *ngIf="this.userProfile.user.username === this.interview.createdBy" class="btn btn-danger mr-1">Delete</a>
 
 
                              <!-- LIKES DROPDOWN -->
                         <div class="dropdown">
-                            <button class="btn btn-success mr-1">
-                                <i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Likes:
+                            <button class="btn btn-success mr-1" *ngIf="this.userProfile.user.username === this.interview.createdBy">
+                                <i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Like
                             </button>
                             <div class="dropdown-content">
                                 <a href="">joe</a>
@@ -58,7 +122,7 @@
 
 
                               <!-- DISLIKES DROPDOWN -->
-                              <div class="dropdown">
+                              <!--  <div class="dropdown">
                                 <button class="btn btn-warning">
                                     <i class="fa fa-arrow-down" aria-hidden="true"></i>&nbsp; Dislikes:
                                 </button>
@@ -67,7 +131,7 @@
                                     <a href="">jin</a>
                                     <a href="">jean</a>
                                 </div>
-                            </div>
+                            </div> -->
                        
                     </div>
                   

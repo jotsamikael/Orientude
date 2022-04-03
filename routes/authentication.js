@@ -190,8 +190,8 @@ router.get('/checkUsername/:username', (req, res)=>{
      }
  })
 
- //All routes that require authorization should be place after this
- router.use((req,res,next)=>{
+ //All routes that require authorization should be place after this  (middelware used to grap token from user's header)
+  router.use((req,res,next)=>{ 
 
     const token = req.headers['authorization'].replace(/^Bearer\s/, '');
    
@@ -218,7 +218,7 @@ router.get('/checkUsername/:username', (req, res)=>{
           }
           }) 
       }
- })
+ })  
 
  router.get('/profile', (req,res)=>{
     User.findOne({_id: req.decoded.userId}).select('username email').exec((err, user)=>{

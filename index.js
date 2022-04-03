@@ -5,7 +5,11 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const path = require('path');
-const authentication = require('./routes/authentication')(router)
+const authentication = require('./routes/authentication')(router);
+const interviewRoute = require('./routes/interviewRoute')(router);
+const schoolRoute = require('./routes/schoolRoute')(router);
+
+
 const bodyParser = require('body-parser')
 const cors = require('cors')
 
@@ -40,6 +44,9 @@ app.use(bodyParser.json());
 
 //app.use(express.static(__dirname + '/client-orientude/project-frontend/dist/'));
 app.use('/authentication', authentication);
+app.use('/interviewRoute', interviewRoute);
+app.use('/schoolRoute', schoolRoute);
+
 
 
 

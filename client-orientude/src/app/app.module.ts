@@ -29,6 +29,7 @@ import { ProfileComponent } from './components/profile/profile.component'
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { InterviewManagerComponent } from './components/interview-manager/interview-manager.component';
+import { InterviewService } from './services/interview.service';
 
 
 @NgModule({
@@ -64,7 +65,8 @@ import { InterviewManagerComponent } from './components/interview-manager/interv
   providers: [ { provide: JWT_OPTIONS, useValue: JWT_OPTIONS },
     JwtHelperService,
      AuthGuard,
-    NotAuthGuard ],
+    NotAuthGuard,
+  InterviewService ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
