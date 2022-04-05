@@ -16,7 +16,7 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { MatSelectModule } from '@angular/material/select';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, NgForm, ReactiveFormsModule } from '@angular/forms';
 // Import the module from the SDK
 import { JwtHelperService, JWT_OPTIONS  } from '@auth0/angular-jwt';
 
@@ -30,6 +30,8 @@ import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { InterviewManagerComponent } from './components/interview-manager/interview-manager.component';
 import { InterviewService } from './services/interview.service';
+import { EditInterviewComponent } from './components/edit-interview/edit-interview.component';
+import { FooterComponent } from './components/footer/footer.component';
 
 
 @NgModule({
@@ -43,7 +45,9 @@ import { InterviewService } from './services/interview.service';
     LoginComponent,
     ProfileComponent,
     DashboardComponent,
-    InterviewManagerComponent
+    InterviewManagerComponent,
+    EditInterviewComponent,
+    FooterComponent
   ],
   imports: [
     HttpClientModule,
@@ -58,6 +62,7 @@ import { InterviewService } from './services/interview.service';
     MatFormFieldModule,
     MatSelectModule,
     ReactiveFormsModule,
+    FormsModule,
     MatListModule,
     
     

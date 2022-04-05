@@ -103,9 +103,9 @@
                         <div *ngIf="this.userProfile.user.username === this.interview.createdBy">
                             <p><strong>Likes:  {{this.interview.likes}} </strong></p>
                         </div>
-                        <a routerLink= "['/edit-interview', interview._id]"  *ngIf="this.userProfile.user.username === this.interview.createdBy" class="btn btn-primary mr-1">Edit</a>
+                        <a [routerLink]= "['/edit-interview/', interview._id]"  *ngIf="this.userProfile.user.username === this.interview.createdBy" class="btn btn-primary mr-1">Edit</a>
                         
-                        <a routerLink= "['/delete-interview', interview._id]" *ngIf="this.userProfile.user.username === this.interview.createdBy" class="btn btn-danger mr-1">Delete</a>
+                        <a [routerLink]= "['/delete-interview/', interview._id]" *ngIf="this.userProfile.user.username === this.interview.createdBy" class="btn btn-danger mr-1">Delete</a>
 
 
                              <!-- LIKES DROPDOWN -->
