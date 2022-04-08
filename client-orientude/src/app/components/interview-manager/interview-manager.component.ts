@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { InterviewService } from 'src/app/services/interview.service';
 
@@ -31,6 +32,7 @@ export class InterviewManagerComponent implements OnInit {
 
   userProfile;
   interviews;
+
   
   constructor(private authService: AuthService, private interviewService : InterviewService) { }
 

@@ -34,15 +34,26 @@ export class InterviewService {
     }
   }
 
-getInterviews(){
 
+getInterviews(){
   this.createAuthenticationHeader();
   return this.http.get(this.domain + '/interviewRoute/getInterviews/', this.options)
  }
+
 
  postNewInterview(interview){
    this.createAuthenticationHeader();
    return this.http.post(this.domain + '/interviewRoute/newInterview/', interview, this.options )
  }
 
+ getSingleInterview(id){
+   this.createAuthenticationHeader();
+   return this.http.get(this.domain+ '/interviewroute/singleinterview/'+id,  this.options)
+ }
+
+
+ updateInterview(interview){
+   this.createAuthenticationHeader();
+   return this.http.put(this.domain + '/interviewroute/updateinterview/', interview, this.options);
+ }
 }

@@ -19,15 +19,16 @@
                 
 
 
-                <form  (submit)="updateInterview()">
+                <form  (submit)="updateInterview()" *ngIf="!loading">
 
                                      <!-- Title input -->
 
                     <div class="form-group">
                         <label for="NameDemo">Title:</label>
                 
-                        <input [disabled]="processing" type="text" class="form-control"   aria-describedby="nameHelp" placeholder="Enter title" [(ngModel)]= "interview.title" />
-                       
+                        <!-- <input [disabled]="processing"   name="title" [(ngModel)]= "this.interview.title" type="text" class="form-control"   aria-describedby="nameHelp"  placeholder="Enter title"/> -->
+                        <input type="text" [disabled]="processing" [(ngModel)] = "this.interview.title" class="form-control" name="title"  aria-describedby="nameHelp" placeholder="Enter title" />
+ 
                        
                     </div>
                     
@@ -37,7 +38,7 @@
                     <div class="form-group">
                         <label for="NameDemo">Body:</label>
                 
-                        <textarea [disabled]="processing" [(ngModel)] = "interview.body" cols="90" rows="4" class="form-control" name="body"  aria-describedby="nameHelp" placeholder="Enter body"></textarea>
+                        <textarea [disabled]="processing" [(ngModel)] = "this.interview.body" cols="90" rows="4" class="form-control" name="body"  aria-describedby="nameHelp" placeholder="Enter body"></textarea>
                        
                     
                                           

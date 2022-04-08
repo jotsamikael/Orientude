@@ -128,7 +128,7 @@ const SchoolSchema = new Schema({
        diplomat: { type: String,  required: true},  //e.g Ingénieur
        branches : { type: Array,  required: true},  //e.g  ['managemant des système d information', 'génie logiciel']
        admission : { type: Array,  required: true},  //e.g ['first', 'third']
-
+       admissionRequirements: { type: String },        //e.g Certified copy of Birth certificate and two passport size photos
        duration: { type: Number, required: true},    //e.g 5 years
        fees: [
            {
