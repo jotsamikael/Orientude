@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DashboardComponent } from './components/dashboard/dashboard.component';
+import { DeleteInterviewComponent } from './components/delete-interview/delete-interview.component';
 import { EditInterviewComponent } from './components/edit-interview/edit-interview.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { InterviewManagerComponent } from './components/interview-manager/interview-manager.component';
@@ -10,6 +11,7 @@ import { RegisterComponent } from './components/register/register.component';
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
 import { HomeComponent } from './home/home.component';
+import { PublicProfileComponent } from './public-profile/public-profile.component';
 import { SearchSchoolComponent } from './search-school/search-school.component';
 
 
@@ -23,6 +25,9 @@ const routes: Routes = [
   {path: 'profile', component: ProfileComponent, canActivate: [AuthGuard]},
   {path: 'interview', component: InterviewManagerComponent, canActivate: [AuthGuard]},
   {path: 'edit-interview/:id', component: EditInterviewComponent, canActivate: [AuthGuard]},
+  {path: 'delete-interview/:id', component: DeleteInterviewComponent, canActivate: [AuthGuard]},
+  {path: 'public-profile/:username', component: PublicProfileComponent, canActivate: [AuthGuard]},
+
 
 
   {path: 'dashboard', component: DashboardComponent, canActivate: [AuthGuard]},

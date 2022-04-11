@@ -53,10 +53,10 @@
 
                     <div class="form-group">
                         <label for="NameDemo">Body:</label>
-                
-                        <textarea cols="90" rows="4" class="form-control" name="body" formControlName="body" aria-describedby="nameHelp" placeholder="Enter body"></textarea>
+                           
+                        <angular-editor style="margin-bottom: 150px;" id="body" [config]="editorConfig" class="form-control " name="body" formControlName="body" aria-describedby="nameHelp" [placeholder]></angular-editor>
                        
-                     <div *ngIf="f.body.touched && (f.body.invalid)" class="alert alert-danger mt-1">
+                        <div *ngIf="f.body.touched && (f.body.invalid)" class="alert alert-danger mt-1">
 
                         <div *ngIf="f.body.errors.required">body is required.</div>
 
@@ -70,8 +70,8 @@
                                           
                     </div>
             
-                   <button [disabled]="processing" (click)="goBack()" class="btn btn-secondary mr-1">Go back</button>
-                   <button [disabled]="!form.valid || (processing)"  class="btn btn-success">submit</button>
+                   <button [disabled]="processing" (click)="goBack()" class="btn btn-secondary mr-1 mt-5">Go back</button>
+                   <button [disabled]="!form.valid || (processing)"  class="btn btn-success mt-5">submit</button>
 
                 </form>
 
@@ -85,8 +85,8 @@
                          <h3 class="card-title pl-3 pt-2 text-white">{{this.interview.title}}</h3>
                     </div>
 
-                    <div class="card-body">
-                        {{this.interview.body}}
+                    <div class="card-body" innerHTML={{this.interview.body}}>
+                        
                     </div>
 
                                      <!-- FOOTER STARTS HERE -->
@@ -100,7 +100,7 @@
                             <strong>Date:{{this.interview.createdAt | date: 'MMM dd, yyyy'}}  </strong>
                           
                         </p>
-                        <div *ngIf="this.userProfile.user.username === this.interview.createdBy">
+                        <div *ngIf="this.userProfile.user.username !== this.interview.createdBy">
                             <p><strong>Likes:  {{this.interview.likes}} </strong></p>
                         </div>
                         <a [routerLink]= "['/edit-interview/', interview._id]"  *ngIf="this.userProfile.user.username === this.interview.createdBy" class="btn btn-primary mr-1">Edit</a>
@@ -110,13 +110,12 @@
 
                              <!-- LIKES DROPDOWN -->
                         <div class="dropdown">
-                            <button class="btn btn-success mr-1" *ngIf="this.userProfile.user.username === this.interview.createdBy">
+                            <button [disabled]="interview.likedBy.indexOf(username) || (this.userProfile.user.username !== this.interview.createdBy)" class="btn btn-success mr-1"  (click)="likeInterview(interview._id)">
                                 <i class="fa fa-heart" aria-hidden="true"></i>&nbsp; Like
                             </button>
                             <div class="dropdown-content">
-                                <a href="">joe</a>
-                                <a href="">john</a>
-                                <a href="">jones</a>
+                                <a *ngFor="let liker of interview.likedBy" [routerLink]="['/public-profile/', liker]">{{liker}}</a>
+                               
                             </div>
                         </div>
 

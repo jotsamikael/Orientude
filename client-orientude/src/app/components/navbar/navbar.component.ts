@@ -16,7 +16,7 @@ export class NavbarComponent implements OnInit {
   ngOnInit(): void {
 
    // console.log('is token expired:' +this.authService.loggedIn());
-
+   console.log('is token expired:' +this.authService.loggedIn());
   }
 
   Onlogout(){

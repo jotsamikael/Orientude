@@ -4,6 +4,9 @@ import { ActivatedRoute } from '@angular/router';
 import { AuthService } from 'src/app/services/auth.service';
 import { InterviewService } from 'src/app/services/interview.service';
 
+import { AngularEditorConfig} from '@kolkov/angular-editor';
+
+
 
 @Component({
   selector: 'app-interview-manager',
@@ -34,7 +37,13 @@ export class InterviewManagerComponent implements OnInit {
   interviews;
 
   
-  constructor(private authService: AuthService, private interviewService : InterviewService) { }
+  constructor(private authService: AuthService, private interviewService : InterviewService) {
+
+    
+
+
+
+   }
 
   ngOnInit(): void {
 
@@ -167,4 +176,44 @@ export class InterviewManagerComponent implements OnInit {
     window.location.reload();
   }
 
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+      spellcheck: true,
+      height: 'auto',
+      minHeight: '0',
+      maxHeight: 'auto',
+      width: 'auto',
+      minWidth: '0',
+      translate: 'yes',
+      enableToolbar: true,
+      showToolbar: true,
+      placeholder: 'Enter text here...',
+      defaultParagraphSeparator: '',
+      defaultFontName: '',
+      defaultFontSize: '',
+      fonts: [
+        {class: 'arial', name: 'Arial'},
+        {class: 'times-new-roman', name: 'Times New Roman'},
+        {class: 'calibri', name: 'Calibri'},
+        {class: 'comic-sans-ms', name: 'Comic Sans MS'}
+      ],
+    }
+
+  
+  likeInterview(id){
+    this.interviewService.likeInterview(id).subscribe(res=>{
+      this.dataObtained = res;
+      console.log('message is: ' +this.dataObtained.message);
+      
+      this.getAllInterviews();
+    })
+  }
+
+
+  disLikeInterview(id){
+    this.interviewService.disLikeInterview(id).subscribe(res=>{
+      this.getAllInterviews();
+    })
+  }
 }
+

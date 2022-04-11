@@ -15,10 +15,10 @@
           <li class="nav-item active">
             <a class="nav-link"  [routerLink]="['/']" [routerLinkActive]="['active']" [routerLinkActiveOptions]="{exact:true} ">Home</a>
           </li>
-          <li *ngIf="authService.loggedIn() == true" class="nav-item active" >
+          <li *ngIf="authService.loggedIn()" class="nav-item active" >
             <a class="nav-link" routerLink='/profile'>Profile</a>
           </li>
-          <li *ngIf="authService.loggedIn() == true" class="nav-item active" >
+          <li *ngIf="authService.loggedIn()" class="nav-item active" >
             <a class="nav-link" routerLink='/interview'>Interviews</a>
           </li>
           <li class="nav-item active">

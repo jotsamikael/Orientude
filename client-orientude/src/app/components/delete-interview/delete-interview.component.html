@@ -1,0 +1,45 @@
+<h1 class="page-header">Delete Interview</h1>
+
+<div class="container">
+    <div class="row">
+        <div class="col-2">
+
+        </div>
+        <div class="col-8">
+              
+            <div class="show-hide-message">
+                <div [ngClass]="messageClass">
+                           {{message}}
+                </div>
+            </div>
+
+           
+                <!-- The Modal -->
+                <div class="card shadow" *ngIf="foundInterview">
+                          <div class="card-header">
+                             Confirm Delete
+                          </div>
+                          <div class="card-body">
+                              Are you sure you want to delete the interview titled: <strong>{{title}}</strong> <br>
+                              <strong>Posted by:</strong>{{createdBy}} &nbsp;
+                            <strong>Date:</strong>{{createdAt | date: 'MMM dd,yyyy'}}
+                        </div>
+
+                           <div class="card-footer">
+                               
+                                <button [disabled]="processing" class="btn btn-success mr-1" (click)="deleteInterview()">Yes</button>
+
+                                <a [routerLink]="['/interview']"  class="btn btn-danger">No</a>
+
+                           </div> 
+                    </div>
+                 </div>
+                               
+
+            </div>
+        </div>
+
+
+      <div class="col-2">
+
+      </div>

@@ -93,4 +93,10 @@ loadToken(){
     //return this.jwtHelper.isTokenExpired();
     
   }
+
+
+  getPublicProfile(username){
+    this.createAuthenticationHeader();
+    return this.http.get(this.domain + '/authentication/publicProfile/' +username, this.options)
+  }
 }

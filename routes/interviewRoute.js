@@ -2,7 +2,7 @@ const User = require('../models/user');
 const Interview = require('../models/interview')
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
-const interview = require('../models/interview');
+//const interview = require('../models/interview');
 //const interview = require('../models/interview');
 
  require('dotenv').config();
@@ -83,7 +83,7 @@ module.exports = (router) =>{
  ********************/
    router.get('/singleInterview/:id', (req, res)=>{
        if(!req.params.id){
-        res.json({success: false, message: 'No blog with id: '+req.params.id +', foundx'})
+        res.json({success: false, message: 'No blog with id: '+req.params.id +', found'})
 
        } else{
         Interview.findOne({_id: req.params.id}, (err, interview)=>{
@@ -196,7 +196,7 @@ module.exports = (router) =>{
  *  DELETE INTERVIEW ROUTE
  ********************/
 
- router.delete('deleteInterview:id',(req, res)=>{
+ router.delete('/deleteInterview/:id',(req, res)=>{
     if(!req.params.id){
          res.json({success: false, message: 'no id provided'})
     } else{
@@ -248,6 +248,164 @@ module.exports = (router) =>{
     }
  })
 
+  /********
+ *  LIKE INTERVIEW ROUTE
+ ********************/
+router.put('/likeInterview', (req,res)=>{
+    if(!req.body.id){
+        res.json({success:false, message: 'No id provided'})
+    } 
+    else{
+          Interview.findOne({_id: req.body.id}, (err, interview)=>{
+              if(err){
+                res.json({success:false, message: 'Invalid interview id'})
+ 
+              } else{
+                 if(!interview){
+                     res.json({success:false, message: 'No interview found'})
+                 } else{
+                     User.findOne({_id: req.decoded.userId}, (err, user)=>{
+                         if(err){
+                            res.json({success:false, message: 'Something went wrong'})
+                        } else{
+                            if(!user){
+                                res.json({success:false, message: 'Could not authenticate user'})
+
+                            } else{
+                                
+                               if(user.username === interview.createdBy){
+ 
+                                res.json({success:false, message: 'You can not like your own interview'})
+
+                               } else{ 
+                                   if (interview.likedBy.includes(user.username)){
+                                    res.json({success:false, message: 'You have already like this interview'})
+  
+                                   } else{
+
+                                       if(interview.DisLikedBy.includes(user.username)){
+                                           interview.dislikes--;
+                                           const arrayIndex = interview.DisLikedBy.indexOf(user.username);
+                                           interview.DisLikedBy.splice(arrayIndex, 1);
+                                           interview.likes++;
+                                           interview.likedBy.push(user.username);
+                                           interview.save((err)=>{
+                                               if(err){
+                                                res.json({success:false, message: 'Something went wrong'})
+
+                                               } else{
+                                                res.json({success:true, message: 'Interview liked'})
+
+                                               }
+                                           })
+                                       } else{
+
+                                        interview.likes++;
+                                        interview.likedBy.push(user.username);
+                                        interview.save((err)=>{
+                                            if(err){
+                                             res.json({success:false, message: 'Something went wrong'})
+
+                                            } else{
+                                             res.json({success:true, message: 'Interview liked'})
+
+                                            }
+                                        })
+
+                                       }
+                                   }
+                               }
+
+
+                            }
+                        }
+                     })
+                 }
+              }
+          })
+    }
+})
+
+
+
+
+  /********
+ *  DISLIKE INTERVIEW ROUTE
+ ********************/
+router.put('/dislikeInterview', (req,res)=>{
+    if(!req.body.id){
+        res.json({success:false, message: 'No id provided'})
+    } 
+    else{
+          Interview.findOne({_id: req.body.id}, (err, interview)=>{
+              if(err){
+                res.json({success:false, message: 'Invalid interview id'})
+ 
+              } else{
+                 if(!interview){
+                     res.json({success:false, message: 'No interview found'})
+                 } else{
+                     User.findOne({_id: req.decoded.userId}, (err, user)=>{
+                         if(err){
+                            res.json({success:false, message: 'Something went wrong'})
+                        } else{
+                            if(!user){
+                                res.json({success:false, message: 'Could not authenticate user'})
+
+                            } else{
+                                
+                               if(user.username === interview.createdBy){
+ 
+                                res.json({success:false, message: 'You can not dislike your own interview'})
+
+                               } else{
+                                   if (interview.DisLikedBy.includes(user.username)){
+                                    res.json({success:false, message: 'You have already disliked this interview'})
+  
+                                   } else{
+
+                                       if(interview.likedBy.includes(user.username)){
+                                           interview.likes--;
+                                           const arrayIndex = interview.likedBy.indexOf(user.username);
+                                           interview.likedBy.splice(arrayIndex, 1);
+                                           interview.disLikes++;
+                                           interview.DisLikedBy.push(user.username);
+                                           interview.save((err)=>{
+                                               if(err){
+                                                res.json({success:false, message: 'Something went wrong'})
+
+                                               } else{
+                                                res.json({success:true, message: 'Interview disliked'})
+
+                                               }
+                                           })
+                                       } else{
+                                           
+                                        interview.disLikes++;
+                                        interview.DisLikedBy.push(user.username);
+                                        interview.save((err)=>{
+                                            if(err){
+                                             res.json({success:false, message: 'Something went wrong'})
+
+                                            } else{
+                                             res.json({success:true, message: 'Interview disliked'})
+
+                                            }
+                                        })
+
+                                       }
+                                   }
+                               }
+
+
+                            }
+                        }
+                     })
+                 }
+              }
+          })
+    }
+})
 
 
 

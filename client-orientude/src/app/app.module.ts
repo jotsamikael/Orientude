@@ -32,6 +32,10 @@ import { InterviewManagerComponent } from './components/interview-manager/interv
 import { InterviewService } from './services/interview.service';
 import { EditInterviewComponent } from './components/edit-interview/edit-interview.component';
 import { FooterComponent } from './components/footer/footer.component';
+import { DeleteInterviewComponent } from './components/delete-interview/delete-interview.component';
+import { AngularEditorModule } from '@kolkov/angular-editor';
+import { PublicProfileComponent } from './public-profile/public-profile.component';
+
 
 
 @NgModule({
@@ -47,7 +51,10 @@ import { FooterComponent } from './components/footer/footer.component';
     DashboardComponent,
     InterviewManagerComponent,
     EditInterviewComponent,
-    FooterComponent
+    FooterComponent,
+    DeleteInterviewComponent,
+    PublicProfileComponent,
+    
   ],
   imports: [
     HttpClientModule,
@@ -64,6 +71,9 @@ import { FooterComponent } from './components/footer/footer.component';
     ReactiveFormsModule,
     FormsModule,
     MatListModule,
+    AngularEditorModule
+
+
     
     
   ],
@@ -71,7 +81,9 @@ import { FooterComponent } from './components/footer/footer.component';
     JwtHelperService,
      AuthGuard,
     NotAuthGuard,
-  InterviewService ],
+  InterviewService,
+    ],
+
   bootstrap: [AppComponent]
 })
 export class AppModule { }

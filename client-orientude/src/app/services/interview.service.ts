@@ -56,4 +56,23 @@ getInterviews(){
    this.createAuthenticationHeader();
    return this.http.put(this.domain + '/interviewroute/updateinterview/', interview, this.options);
  }
+
+
+ deleteInterview(id){
+  this.createAuthenticationHeader();
+   return this.http.delete(this.domain+ '/interviewroute/deleteInterview/'+id, this.options)
+ }
+
+ likeInterview(id){
+   const interviewData = {id: id}
+   return this.http.put(this.domain+ '/interviewroute/likeInterview/',interviewData,this.options);
+ }
+ 
+
+ disLikeInterview(id){
+  const interviewData = {id: id}
+  return this.http.put(this.domain+ '/interviewroute/likeInterview/',interviewData,this.options);
+}
+
+
 }
