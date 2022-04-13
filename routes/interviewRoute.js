@@ -2,6 +2,7 @@ const User = require('../models/user');
 const Interview = require('../models/interview')
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
+const interview = require('../models/interview');
 //const interview = require('../models/interview');
 //const interview = require('../models/interview');
 
@@ -408,6 +409,60 @@ router.put('/dislikeInterview', (req,res)=>{
 })
 
 
+  /********
+ *  POST COMMENT ON INTERVIEW  ROUTE
+ ********************/
+
+ router.post('/comment', (req,res)=>{
+     if(!req.body.comment){
+         res.json({success: false, message: 'No comment provided'});
+     } else 
+     {
+         if(!req.body.id){
+            res.json({success: false, message: 'No id provided'});
+ 
+         } else{
+             Interview.findOne({_id: req.body.id}, (err, interview)=>{
+                 if(err){
+                    res.json({success: false, message: 'Invalid id provided'});
+
+                 } else{
+                     if(!interview){
+                        res.json({success: false, message: 'Interview not found'});
+
+                     } else{
+                         User.findOne({_id: req.decoded.userId}, (err, user)=>{
+                             if(err){
+                                res.json({success: false, message: 'Something went wrong'});
+
+                             } else{
+                                 if(!user){
+                                    res.json({success: false, message: 'No user found'});
+
+                                 } else{
+                                     interview.comments.push({
+                                         comment: req.body.comment,
+                                         commentator: user.username
+                                        
+                                     })
+                                     interview.save((err)=>{
+                                         if(err)
+                                         {
+                                            res.json({success:false, message:'Somethong went wrong'})
+                                         } else{
+                                            res.json({success:true, message:'Comment saved'})
+
+                                         }
+                                     })
+                                 }
+                             }
+                         })
+                     }
+                 }
+             })
+         }
+     }
+ })
 
    return router; //return router to main index.js
 }

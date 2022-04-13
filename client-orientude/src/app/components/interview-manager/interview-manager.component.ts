@@ -36,6 +36,10 @@ export class InterviewManagerComponent implements OnInit {
   userProfile;
   interviews;
 
+  newComment = [];
+
+  enableComments = [];
+
   
   constructor(private authService: AuthService, private interviewService : InterviewService) {
 
@@ -81,7 +85,10 @@ export class InterviewManagerComponent implements OnInit {
   }
 
 
-  draftComment(){
+  draftComment(id){
+    this.commentForm.reset();
+    this.newComment = [];
+    this.newComment.push(id)
     
   }
 
@@ -209,11 +216,82 @@ export class InterviewManagerComponent implements OnInit {
     })
   }
 
+  postComment(id, ){
+    this.disableCommentForm();
+    this.processing = true;
+    const comment = this.commentForm.get('comment').value;
+
+    this.interviewService.comment(id, comment).subscribe(res =>{
+      this.getAllInterviews();
+      const index = this.newComment.indexOf(id);
+      this.newComment.splice(index, 1);
+      this.enableCommentForm();
+      this.commentForm.reset();
+      this.processing = false;
+      if(this.enableComments.indexOf(id) < 0) 
+
+      this.expand(id)
+
+      
+     /* this.dataObtained = res;
+      if(!this.dataObtained.success){
+        this.message = this.dataObtained.message;
+        this.messageClass = 'alert alert-danger'
+      } else{
+
+      }*/
+    })
+  }
+
 
   disLikeInterview(id){
     this.interviewService.disLikeInterview(id).subscribe(res=>{
       this.getAllInterviews();
     })
+  }
+
+
+
+  commentForm = new FormGroup({
+
+    comment: new FormControl('', [Validators.required, Validators.minLength(1), Validators.maxLength(200)]),
+
+  });
+
+  
+
+  get g(){
+
+    return this.commentForm.controls;
+
+  }
+
+  cancelSubmit(id){
+    const index = this.newComment.indexOf(id);
+    this.newComment.splice(index, 1);
+    this.commentForm.reset();
+    this.enableCommentForm();
+    this.processing = false;
+
+  }
+
+  enableCommentForm(){
+    this.commentForm.get('comment').enable();
+  }
+
+  disableCommentForm(){
+    this.commentForm.get('comment').disable();
+  }
+
+  expand(id){
+
+   this.enableComments.push(id);
+  }
+
+  collapse(id){
+   
+    const index = this.enableComments.indexOf(id);
+    this.enableComments.splice(index, 1);
   }
 }
 

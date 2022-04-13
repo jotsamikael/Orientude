@@ -1,3 +1,14 @@
-<p>{{this.user.username}}</p>
-<p>{{this.user.email}}</p>
+<h1 class="page-header">Public profile</h1>
+
+    <div class="show-hide-message">
+        <div [ngClass]="messageClass">
+                {{message}}
+        </div>
+    </div>
+
+    <div>
+        <p>{{this.user.username}}</p>
+        <p>{{this.user.email}}</p>
+    </div>
+
 

@@ -74,5 +74,12 @@ getInterviews(){
   return this.http.put(this.domain+ '/interviewroute/likeInterview/',interviewData,this.options);
 }
 
+comment(id, comment){
+  const interviewData = {id: id, comment: comment}
+  this.createAuthenticationHeader();
+ return this.http.post(this.domain + '/interviewroute/comment/', interviewData, this.options)
+
+}
+
 
 }
