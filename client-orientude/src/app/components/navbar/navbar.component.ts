@@ -10,13 +10,15 @@ import { AuthService } from 'src/app/services/auth.service';
 })
 export class NavbarComponent implements OnInit {
 
-
+  
+   loggedInUser;
+  isAdmin = false;
   constructor(public authService: AuthService, private router: Router,private messageService: MessagesService) { }
 
   ngOnInit(): void {
+    
 
-   // console.log('is token expired:' +this.authService.loggedIn());
-   console.log('is token expired:' +this.authService.loggedIn());
+  console.log('is token expired:' +this.authService.loggedIn());
   }
 
   Onlogout(){

@@ -101,6 +101,19 @@ let emailLengthChecker = (email)=>{
      }
  }
 
+ //check wether role is 
+ let roleTypeChecker = (role)=>{
+     if(!role){
+         return false;
+     } else {
+         if (role=== 'student' || role==='recruter' || role=== 'admin'){
+             return true;
+         } else{
+             return false;
+         }
+     }
+ }
+
 
 
 const emailValidators = [
@@ -112,14 +125,23 @@ const emailValidators = [
     validator: emailStructureChecker,
      message: 'Email is not valid'
 } 
+
+]
+
+const roleValidator = [
+    {
+        validator: roleTypeChecker,
+        message: 'Role is either admin, student or recruter'
+    }
 ]
 
 
 const Schema = mongoose.Schema;
 const userSchema = new Schema({
     email: {type: String, required: true, unique: true, lowercase: true, validate: emailValidators},
+    role: {type: String, required: true, validate: roleValidator},
     username: {type: String, required: true, unique: true, lowercase: true, validate: usernameValidators},
-     password: {type: String, required: true, validate: passwordValidator}
+    password: {type: String, required: true, validate: passwordValidator}
     
 });
 

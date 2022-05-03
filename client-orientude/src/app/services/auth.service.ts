@@ -59,6 +59,8 @@ loadToken(){
      this.user = null;
      console.log('is token expired:' +this.jwtHelper.isTokenExpired());
      localStorage.clear();
+        
+     
    }
 
    storeUserData(user, token){
@@ -82,6 +84,7 @@ loadToken(){
     this.authotoken = localStorage.getItem('token')
     
     if(this.authotoken){
+      
       return true;
     }
     else{

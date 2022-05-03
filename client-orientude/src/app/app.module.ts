@@ -24,7 +24,6 @@ import { SearchSchoolComponent } from './search-school/search-school.component';
 import { NavbarComponent } from './components/navbar/navbar.component';
 import { RegisterComponent } from './components/register/register.component';
 import { LoginComponent } from './components/login/login.component';
-import { DashboardComponent } from './components/dashboard/dashboard.component';
 import { ProfileComponent } from './components/profile/profile.component'
 import { AuthGuard } from './guards/auth.guard';
 import { NotAuthGuard } from './guards/notAuth.guard';
@@ -35,6 +34,10 @@ import { FooterComponent } from './components/footer/footer.component';
 import { DeleteInterviewComponent } from './components/delete-interview/delete-interview.component';
 import { AngularEditorModule } from '@kolkov/angular-editor';
 import { PublicProfileComponent } from './public-profile/public-profile.component';
+import { FilterPipeModule } from 'ngx-filter-pipe';
+import { OffersComponent } from './components/offers/offers.component';
+import { AdminPanelComponent } from './components/admin-panel/admin-panel.component';
+
 
 
 
@@ -48,12 +51,14 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
     RegisterComponent,
     LoginComponent,
     ProfileComponent,
-    DashboardComponent,
     InterviewManagerComponent,
     EditInterviewComponent,
     FooterComponent,
     DeleteInterviewComponent,
     PublicProfileComponent,
+    OffersComponent,
+    AdminPanelComponent,
+  
     
   ],
   imports: [
@@ -71,7 +76,8 @@ import { PublicProfileComponent } from './public-profile/public-profile.componen
     ReactiveFormsModule,
     FormsModule,
     MatListModule,
-    AngularEditorModule
+    AngularEditorModule,
+    FilterPipeModule
 
 
     

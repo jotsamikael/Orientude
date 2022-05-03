@@ -16,9 +16,13 @@ router.post('/register', (req, res)=>{
     //req.body.password
    if(!req.body.email){
        res.json({success: false, message: 'You must provide an email'})
-   } 
+   }  else {
 
-   else{
+
+       if(!req.body.role){
+           res.json({success: false, message: 'You must choose a role'})
+       }
+        else{
 
     if(!req.body.username){
         res.json({success: false, message: 'You must provide a username'})
@@ -33,7 +37,8 @@ router.post('/register', (req, res)=>{
         let user = new User({
             email : req.body.email.toLowerCase(),
             username : req.body.username.toLowerCase(),
-            password : req.body.password
+            password : req.body.password,
+            role: req.body.role
     
         })
         user.save((err) =>{
@@ -49,6 +54,10 @@ router.post('/register', (req, res)=>{
       
                            }
                        else{
+                           if(err.errors.role){
+                               res.json({success: false, message: err.errors.role.message}) 
+                            }
+                               else{
                         if(err.errors.username){
                         res.json({success: false, message: err.errors.username.message})
                         } else {
@@ -60,6 +69,7 @@ router.post('/register', (req, res)=>{
                             }
                         }
                     } 
+                 } 
                   }
                 }
              } 
@@ -72,7 +82,7 @@ router.post('/register', (req, res)=>{
    }
    }
 
-   
+} 
 })
 
 //check email uniqueness in real time on client
@@ -221,7 +231,7 @@ router.get('/checkUsername/:username', (req, res)=>{
  })    
 
  router.get('/profile', (req,res)=>{
-    User.findOne({_id: req.decoded.userId}).select('username email').exec((err, user)=>{
+    User.findOne({_id: req.decoded.userId}).select('username email role').exec((err, user)=>{
          if(err){
              res.json({success: false, message: err})
          } else{

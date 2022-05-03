@@ -10,8 +10,10 @@ export class ProfileComponent implements OnInit {
   username;
   email;
   profile: any;
+  loggedInUser: any;
+  isAdmin: boolean;
 
-  constructor( private authService: AuthService) { }
+  constructor( public authService: AuthService) { }
 
   ngOnInit(): void {
      this.authService.getProfile().subscribe( res =>{
@@ -22,6 +24,18 @@ export class ProfileComponent implements OnInit {
        this.email = this.profile.user.email;
        
      })
+
+
+
+     this.authService.getProfile().subscribe( res =>{
+      this.loggedInUser = res;
+      console.log('user is: ' +this.loggedInUser.user.role)
+      if(this.loggedInUser.user.role === "admin"){
+        this.isAdmin = true;
+      }
+      console.log('is admin is:' +this.isAdmin);
+
+   })
   }
 
   

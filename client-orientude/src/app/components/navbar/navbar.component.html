@@ -27,6 +27,7 @@
           <li class="nav-item active">
             <a class="nav-link" href="#">Contact us</a>
           </li>
+          
           <li class="shadow nav-item active" *ngIf="authService.loggedIn() == false">
             <a class="btn  btn-lg"  [routerLinkActive]="['active']"
              [routerLinkActiveOptions]="{exact:true}" routerLink='/register'>Sign Up</a>

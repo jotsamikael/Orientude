@@ -4,7 +4,8 @@
   "description": "MEAN STACK backend orientude",
   "main": "index.js",
   "scripts": {
-    "start": "node index.js"
+    "start": "node index.js",
+    "build": "cd client-orientude && ng serve --prod"
   },
   "author": "jotsamikael@gmail.com",
   "license": "ISC",

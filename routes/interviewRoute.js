@@ -3,8 +3,7 @@ const Interview = require('../models/interview')
 const jwt = require('jsonwebtoken');
 const config = require('../config/database');
 const interview = require('../models/interview');
-//const interview = require('../models/interview');
-//const interview = require('../models/interview');
+
 
  require('dotenv').config();
 
@@ -19,7 +18,7 @@ module.exports = (router) =>{
           res.json({ success: false, message: 'Interview title is required'})
        } else {
            if(!req.body.body){
-            res.json({ success: false, message: 'Your inetrview has no body'})
+            res.json({ success: false, message: 'Your interview has no body'})
            }  else{
                    const  interview = new Interview({
                        title: req.body.title,

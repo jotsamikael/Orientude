@@ -97,24 +97,26 @@ export class LoginComponent implements OnInit {
 
                     this.authService.storeUserData(this.dataObtained.user, this.dataObtained.token);
 
+
                     setTimeout(() => {
 
                       if(this.previousURL){
                         this.router.navigate([this.previousURL])
                       } 
                       else{
-                        
+                       
                         this.router.navigate(['/profile'])
+                        
                       }
                     }, 1500);
                   }
                 } )
-  
-  
+
           }
   
 
   ngOnInit(): void {
+
    if(this.authguard.redirectURL){
      this.messageClass = 'alert alert-danger';
      this.message = 'You must be logged to view this page';

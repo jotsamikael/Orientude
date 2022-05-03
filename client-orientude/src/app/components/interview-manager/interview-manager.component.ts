@@ -57,6 +57,8 @@ export class InterviewManagerComponent implements OnInit {
     
     })
 
+    
+
     this.getAllInterviews();
   }
 

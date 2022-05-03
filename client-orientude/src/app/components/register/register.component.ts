@@ -33,6 +33,8 @@ processing = false;
     
 
     email: new FormControl('', [Validators.required, Validators.email, , Validators.maxLength(30)]),
+    
+   role: new FormControl(),
 
     password: new FormControl('', [Validators.required,  Validators.minLength(6), Validators.pattern(/^(?=.*[a-z])(?=.*[A-Z])(?=.*?[\d])(?=.*?[\W]).{6,15}$/),Validators.maxLength(15)]),
        
@@ -66,6 +68,7 @@ processing = false;
  disableForm(){
    this.form.controls['username'].disable();
    this.form.controls['email'].disable();
+   this.form.controls['role'].disable();
    this.form.controls['password'].disable();
    this.form.controls['confirmPassword'].disable();
 
@@ -76,6 +79,7 @@ processing = false;
 enableForm(){
    this.form.controls['username'].enable();
    this.form.controls['email'].enable();
+   this.form.controls['role'].enable();
    this.form.controls['password'].enable();
    this.form.controls['confirmPassword'].enable();
 
@@ -94,6 +98,8 @@ enableForm(){
               const user = {
                 username: this.form.get('username').value,
                 email: this.form.get('email').value,
+                role: this.form.get('role').value,
+
                 password: this.form.get('password').value
 
               }

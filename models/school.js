@@ -154,3 +154,9 @@ const SchoolSchema = new Schema({
 
 
 module.exports = mongoose.model('School',SchoolSchema)
+
+
+
+
+
+

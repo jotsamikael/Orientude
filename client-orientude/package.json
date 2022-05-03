@@ -29,6 +29,8 @@
     "bootstrap": "^4.6.1",
     "font-awesome": "^4.7.0",
     "jquery": "^3.6.0",
+    "ngx-filter-pipe": "^2.1.2",
+    "ngx-order-pipe": "^2.2.0",
     "rxjs": "~6.6.0",
     "tslib": "^2.0.0",
     "zone.js": "^0.11.5"

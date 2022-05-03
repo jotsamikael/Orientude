@@ -5,14 +5,20 @@ const router = express.Router();
 const mongoose = require('mongoose');
 const config = require('./config/database');
 const path = require('path');
-const authentication = require('./routes/authentication')(router);
-const interviewRoute = require('./routes/interviewRoute')(router);
 const schoolRoute = require('./routes/schoolRoute')(router);
+
+
+const authentication = require('./routes/authentication')(router);
+const noticeRoute = require('./routes/noticeRoute')(router);
+const applicationRoute = require('./routes/applicationRoute')(router);
+
+
+const interviewRoute = require('./routes/interviewRoute')(router);
 
 
 const bodyParser = require('body-parser')
 const cors = require('cors')
-
+const port = process.env.PORT || 3000;
 
 
 mongoose.Promise = global.Promise;
@@ -43,9 +49,14 @@ app.use(bodyParser.json());
 
 
 //app.use(express.static(__dirname + '/client-orientude/project-frontend/dist/'));
-app.use('/authentication', authentication);
-app.use('/interviewRoute', interviewRoute);
 app.use('/schoolRoute', schoolRoute);
+
+app.use('/authentication', authentication);
+app.use('/noticeRoute', noticeRoute)
+app.use('/applicationRoute', applicationRoute)
+
+
+app.use('/interviewRoute', interviewRoute);
 
 
 
@@ -55,7 +66,7 @@ app.use('/schoolRoute', schoolRoute);
     res.sendFile(path.join(__dirname + '/client-orientude/dist/project-frontend/index.html'));
   })*/
   
-  app.listen(3000, ()=>{
-      console.log('Listening on port 3000')
+  app.listen(port, ()=>{
+      console.log('Listening on port'+ port)
   })
   
